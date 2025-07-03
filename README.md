@@ -8,6 +8,12 @@ It provides a friendly user interface with organized features such as messages, 
 
 It is set to be secure and reliable so that all the information is confidential, and users are shown only what the application allows.
 
+### Watch a video
+
+<a href="https://youtu.be/I7WIhnHABq0" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.youtube.com/vi/I7WIhnHABq0/0.jpg" alt="Demo Video">
+</a>
+
 ## Development
 
 ### For the server side, the application is developed using:
@@ -29,6 +35,6 @@ The final database result consists of 11 tables being: Users, UserRoles, Roles, 
 
 ![Database Design](lease_link_diagram.png)
 
-## Demo
+## Author
 
-[![Demo Video](https://img.youtube.com/vi/I7WIhnHABq0/0.jpg)](https://youtu.be/I7WIhnHABq0)
+- [Andres Bonilla](https://github.com/Andres94b)
