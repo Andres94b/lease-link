@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PRMSProject.Models.Building>
+
+@{
+    ViewData["Title"] = "Buildings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BuildingPhoneNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildingName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildingAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuildingPhoneNumber)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BuildingId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BuildingId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BuildingId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<PRMSProject.Models.Event>
+
+@{
+    ViewData["Title"] = "Events";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EventType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apartment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RelatedToNavigation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReportedByNavigation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EventType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apartment.ApartmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RelatedToNavigation.UserFullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReportedByNavigation.UserFullName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.EventId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.EventId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.EventId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,76 @@
+﻿@model PRMSProject.Models.Message
+@using System.Security.Claims
+
+
+@{
+    ViewData["Title"] = "Compose";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<h4>Message</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @* @if (!ViewData.ModelState.IsValid) *@
+        @* { *@
+        @*     <div class="alert alert-danger"> *@
+        @*         <ul> *@
+        @*             @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors)) *@
+        @*             { *@
+        @*                 <li>@error.ErrorMessage</li> *@
+        @*             } *@
+        @*         </ul> *@
+        @*     </div> *@
+        @* } *@
+        <form asp-action="Create" asp-controller="Messages">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden"  asp-for="MessageId" value="@Guid.NewGuid().ToString()" />
+            <input type="hidden" asp-for="SenderId" class="form-control" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)">
+            @if (ViewData["ApartmentManagerName"] != null)
+            {
+                <div class="form-group">
+                    <label asp-for="ReceiverId" class="control-label">To:</label>
+                    <input type="hidden" asp-for="ReceiverId" value="@ViewData["ApartmentManagerId"]">
+                    <input disabled="disabled" class="form-control" value="@ViewData["ApartmentManagerName"]"/>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MessageSubject" class="control-label">Subject</label>
+                    <input asp-for="MessageSubject" class="form-control" value="Interest on @ViewData["ApartmentId"]"/>
+                    <span asp-validation-for="MessageSubject" class="text-danger"></span>
+                </div>
+                
+            }
+            else{
+                <div class="form-group">
+                    <label asp-for="ReceiverId" class="control-label">To:</label>
+                    <select asp-for="ReceiverId" class="form-control" asp-items="ViewBag.ReceiverId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MessageSubject" class="control-label">Subject</label>
+                    <input asp-for="MessageSubject" class="form-control" />
+                    <span asp-validation-for="MessageSubject" class="text-danger"></span>
+                </div>
+            }
+            
+            
+            <div class="form-group">
+                <label asp-for="MessageText" class="control-label">Message</label>
+                <textarea rows="10" asp-for="MessageText" class="form-control"></textarea>
+                <span asp-validation-for="MessageText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)" asp-route-tab="Inbox">Back to Inbox</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

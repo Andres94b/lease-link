@@ -1,0 +1,43 @@
+:root {
+    --dark: #282a12;
+    --green: #5f5f24;
+    --blue: #25627f;
+    --red: #722018;
+    --light: #a9bbc8;
+    --yellow: #cd7d1d;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-image: url("../assets/MontrealImage.jpg");
+    background-size: cover;
+    background-color: var(--dark);
+    color: var(--dark);
+}
+
+header .container-fluid {
+    color: var(--dark);
+}
+
+footer .container {
+    color: var(--light);
+}

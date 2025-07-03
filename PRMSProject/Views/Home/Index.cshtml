@@ -1,0 +1,60 @@
+﻿@model IEnumerable<PRMSProject.Models.Listing>
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to LeaseLink</h1>
+    <p>Here you can find the available apartments.</p>
+</div>
+
+<nav class="navbar navbar-expand-lg navbar-light ">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Listings</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="w-25">Pictures</th>
+                
+                <th class="w-auto">
+                    Details
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="@item.Apartment.PicturesPath" class="w-100" asp-append-version="true">
+                    </td>
+                    
+                    <td>
+                        
+                        <div >
+                            <h5 class="card-title">@item.Title</h5>
+                            <p class="card-text">@item.Description</p>
+                            <p>Price: @item.Price</p>
+                            <a class="btn btn-dark" asp-controller="Listings" asp-action="Details" asp-route-id="@item.ListingId">Details</a>
+                        </div>
+                        <div >
+                            Available from: @item.AvailableFrom
+                        </div>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

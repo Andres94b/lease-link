@@ -1,0 +1,59 @@
+﻿@model PRMSProject.Models.Request
+@using System.Security.Claims
+
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Request</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <li>@error.ErrorMessage</li>
+                    }
+                </ul>
+            </div>
+        }
+        <form asp-action="Create" asp-controller="Requests">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Apartment manager's Name</label>
+                <input disabled="disabled" class="form-control" value="@ViewData["ManagerName"]" />
+            </div>
+           
+            <input type="hidden" asp-for="RequestId" class="form-control" value="@Guid.NewGuid().ToString()">
+                <input type="hidden" asp-for="UserId" name="UserId" class="form-control" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)">
+
+            <input type="hidden" asp-for="ApartmentId" class="form-control" value="@ViewData["ApartmentId"]">
+            <input type="hidden" asp-for="RequestStatus" class="form-control" value="Pending">
+
+            <div class="form-group">
+                <label asp-for="RequestText" class="control-label">Request</label>
+                <textarea rows="10" asp-for="RequestText" class="form-control"></textarea>
+                <span asp-validation-for="RequestText" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+       
+    </div>
+</div>
+
+<div>
+    <a asp-action="List" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

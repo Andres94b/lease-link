@@ -1,0 +1,58 @@
+﻿@model IEnumerable<PRMSProject.Models.Apartment>
+
+@{
+    ViewData["Title"] = "Apartments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="w-25">Pictures</th>
+
+            <th class="w-auto">
+                Details
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="@item.PicturesPath" class="w-100" asp-append-version="true">
+                </td>
+                <td>
+                    <div>
+                        <h5 class="card-title">Building: @item.Building.BuildingName, Apt: @item.ApartmentNumber - Int: @item.ApartmentInterior Floor: @item.FloorNumber</h5>
+                        <p class="card-text">@item.BedroomAmount bedrooms, @item.Area of area, @item.BathroomsAmount bathrooms, @item.GarageAmount garages, @item.BalconyAmount balconies</p>
+                        <p>Owner: @item.Owner.UserFullName</p>
+                       
+                    </div>
+                    <div>
+                        Is rented? - @if( item.Tenant != null)
+                        {
+                            <a>Yes</a> 
+                        } 
+                        else 
+                        {
+                            <a>No - </a> 
+                            <a asp-action="Create" asp-controller="Listings">Create listing for available apartment!</a>
+                        }
+                        
+                    </div>
+                    <a asp-action="Edit" asp-route-id="@item.ApartmentId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ApartmentId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ApartmentId">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>

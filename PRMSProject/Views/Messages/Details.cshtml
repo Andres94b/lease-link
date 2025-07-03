@@ -1,0 +1,51 @@
+﻿@using System.Security.Claims
+
+@model PRMSProject.Models.Message
+
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Message</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MessageSubject)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MessageSubject)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MessageText)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MessageText)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SentAt)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SentAt)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Receiver)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Receiver.UserFullName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Sender)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Sender.UserFullName)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="List" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Back to Messages</a>
+</div>

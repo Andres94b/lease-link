@@ -1,0 +1,106 @@
+﻿@model PRMSProject.Models.Apartment
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Apartment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ApartmentId" />
+            <div class="form-group">
+                <label asp-for="BuildingId" class="control-label"></label>
+                <select asp-for="BuildingId" class="form-control" asp-items="ViewBag.BuildingId"></select>
+                <span asp-validation-for="BuildingId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OwnerId" class="control-label"></label>
+                <select asp-for="OwnerId" class="form-control" asp-items="ViewBag.OwnerId"></select>
+                <span asp-validation-for="OwnerId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenantId" class="control-label"></label>
+                <select asp-for="TenantId" class="form-control" asp-items="ViewBag.TenantId"></select>
+                <span asp-validation-for="TenantId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApartmentNumber" class="control-label"></label>
+                <input asp-for="ApartmentNumber" class="form-control" />
+                <span asp-validation-for="ApartmentNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ApartmentInterior" class="control-label"></label>
+                <input asp-for="ApartmentInterior" class="form-control" />
+                <span asp-validation-for="ApartmentInterior" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FloorNumber" class="control-label"></label>
+                <input asp-for="FloorNumber" class="form-control" />
+                <span asp-validation-for="FloorNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Area" class="control-label"></label>
+                <input asp-for="Area" class="form-control" />
+                <span asp-validation-for="Area" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BedroomAmount" class="control-label"></label>
+                <input asp-for="BedroomAmount" class="form-control" />
+                <span asp-validation-for="BedroomAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BathroomsAmount" class="control-label"></label>
+                <input asp-for="BathroomsAmount" class="form-control" />
+                <span asp-validation-for="BathroomsAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GarageAmount" class="control-label"></label>
+                <input asp-for="GarageAmount" class="form-control" />
+                <span asp-validation-for="GarageAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepositAmount" class="control-label"></label>
+                <input asp-for="DepositAmount" class="form-control" />
+                <span asp-validation-for="DepositAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BalconyAmount" class="control-label"></label>
+                <input asp-for="BalconyAmount" class="form-control" />
+                <span asp-validation-for="BalconyAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RoomAmount" class="control-label"></label>
+                <input asp-for="RoomAmount" class="form-control" />
+                <span asp-validation-for="RoomAmount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsRented" class="control-label"></label>
+                <input asp-for="IsRented" class="form-control" />
+                <span asp-validation-for="IsRented" class="text-danger"></span>
+            </div>
+            <div class="form-group visually-hidden">
+                <label asp-for="PicturesPath" class="control-label"></label>
+                <input asp-for="PicturesPath" class="form-control" />
+                <span asp-validation-for="PicturesPath" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List" asp-route-id="@User.FindFirstValue(ClaimTypes.NameIdentifier)">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

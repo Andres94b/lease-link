@@ -1,0 +1,121 @@
+﻿@model IEnumerable<PRMSProject.Models.Apartment>
+
+@{
+    ViewData["Title"] = "Apartments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApartmentNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApartmentInterior)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FloorNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Area)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BedroomAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BathroomsAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GarageAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepositAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BalconyAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsRented)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PicturesPath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Building)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tenant)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApartmentNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApartmentInterior)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FloorNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BedroomAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BathroomsAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GarageAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepositAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BalconyAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsRented)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PicturesPath)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Building.BuildingName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner.UserFullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tenant.UserFullName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ApartmentId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ApartmentId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ApartmentId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

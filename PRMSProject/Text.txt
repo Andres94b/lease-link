@@ -1,0 +1,1 @@
+Scaffold-DbContext "ANDRES_DESKTOP\SQL2022EXPRESS;Initial Catalog=PRMSDatabase;User=sa;Password=sysadm;Integrated Security=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Tables Users,Roles,UserRoles,Messages,Buildings,Apartments,Requests,Events,Listings,Appointments,Payments
